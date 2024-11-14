@@ -5,6 +5,8 @@ from flask import jsonify, abort, Blueprint
 from api.v1.views import app_views
 
 
+app_views = Blueprint('app_views', __name__)
+
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status() -> str:
     """ GET /api/v1/status
@@ -14,12 +16,10 @@ def status() -> str:
     return jsonify({"status": "OK"})
 
 
-bp = Blueprint('index', __name__)
 
-
-@app.route('/api/v1/unauthorized')
-def unauthorized_endpoint():
-    """ ROute to unauthorize
+@app_views.route('/api/v1/unauthorized', methods=['GET'])
+def unauthorized():
+    """ Route to trigger a 401 Unauthorised error
     """
     abort(401)
 
@@ -34,6 +34,3 @@ def stats() -> str:
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
-
-
-app.register_blueprint(bp)
