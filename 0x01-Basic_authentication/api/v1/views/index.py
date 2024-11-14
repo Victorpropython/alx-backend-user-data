@@ -33,7 +33,7 @@ def stats() -> str:
 def unauthorized() -> None:
     """ Route to trigger a 401 Unauthorised error
     """
-    abort(404)
+    abort(401)
 
 
 @app_views.route('/api/v1/forbidden/', strict_slashes=False)
