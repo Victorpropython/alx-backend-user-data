@@ -3,10 +3,12 @@
 """
 import re
 from flask import Flask, request
-from typing import List, Any
+from typing import List, TypeVar
 
 
 class Auth:
+    """A class tomanage authentication"""
+
     def require_auth(self, path:  str, excluded_paths: List[str]) -> bool:
         """This method will be implemented to check if authentication
         required for a given path, considering any excluded paths.
@@ -21,6 +23,7 @@ class Auth:
         """
         return False
 
+
     def authorization_header(self, request=None) -> str:
         """ This method will be implemented to retrieve the authorizarion
         header from the request if present.
@@ -33,6 +36,7 @@ class Auth:
             Str: the authorization header value or None if not present.
         """
         return None
+
 
     def current_user(self, request=None) -> Any:
         """ A Method to retrieve information about the current authenticated
