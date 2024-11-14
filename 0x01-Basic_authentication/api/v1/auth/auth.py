@@ -2,8 +2,8 @@
 """For http Authentication file
 """
 import re
-from flask import Flask, request
-from typing import List, TypeVar
+from flask import request
+from typing import List, TypeVar, Any
 
 
 class Auth:
