@@ -1,7 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """For http Authentication file
 """
 from flask import Flask
+from typing import List, Any
 
 
 class Auth:
@@ -17,7 +18,7 @@ class Auth:
         RETURNS:
             bool: To return True if authentication is required, False if None
         """
-        pass
+        return False
 
     def authorization_header(self, request=None) -> str:
         """ This method will be implemented to retrieve the authorizarion
