@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """For http Authentication file
 """
-from flask import Flask
+import re
+from flask import Flask, request
 from typing import List, Any
 
 
@@ -31,7 +32,7 @@ class Auth:
         Returns:
             Str: the authorization header value or None if not present.
         """
-        pass
+        return None
 
     def current_user(self, request=None) -> Any:
         """ A Method to retrieve information about the current authenticated
@@ -44,4 +45,4 @@ class Auth:
         Returns:
             Any: Information about the current user or Noneif not authenticated
         """
-        pass
+        return None
