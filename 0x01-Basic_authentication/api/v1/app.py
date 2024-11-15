@@ -12,7 +12,7 @@ from api.v1.views.index import app_views
 #  importing the auth class based on Auth_TYPE
 
 auth = None
-Auth_TYPE = getenv("AUTH_TYPE")
+AUTH_TYPE = getenv("AUTH_TYPE")
 
 if AUTH_TYPE == "auth":
     from api.v1.auth.auth import Auth
