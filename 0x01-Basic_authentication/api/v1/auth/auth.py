@@ -47,9 +47,9 @@ class Auth:
             Str: the authorization header value or None if not present.
         """
         if request is None:
-            return None
-
-        return request.headers.get("Authorization")
+            return request.headers.get('Authorization', None)
+        
+        return None
 
     def current_user(self, request=None) -> Any:
         """ A Method to retrieve information about the current authenticated
