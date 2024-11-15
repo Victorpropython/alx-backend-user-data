@@ -40,7 +40,7 @@ def forbidden(error) -> str:
 @app.before_request
 def before_request():
     #  skipping the auth if its not set
-    if auth isNone:
+    if auth is None:
         return
 
     #  List of endpoints that dot need authorization
