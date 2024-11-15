@@ -23,7 +23,6 @@ class Auth:
         """
         return False
 
-
     def authorization_header(self, request=None) -> str:
         """ This method will be implemented to retrieve the authorizarion
         header from the request if present.
@@ -36,7 +35,6 @@ class Auth:
             Str: the authorization header value or None if not present.
         """
         return None
-
 
     def current_user(self, request=None) -> Any:
         """ A Method to retrieve information about the current authenticated
