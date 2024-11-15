@@ -21,7 +21,19 @@ class Auth:
         RETURNS:
             bool: To return True if authentication is required, False if None
         """
-        return False
+        if path is None:
+            return True
+
+        if not excluded_paths:
+            return True
+
+        if not path.endswith('/'):
+            path += '/'
+
+        if path in excluded_paths:
+            return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """ This method will be implemented to retrieve the authorizarion
