@@ -8,19 +8,21 @@ from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
 from api.v1.views.index import app_views
+from api.v1.auth.auth import Auth
 
-#  importing the auth class based on Auth_TYPE
-
-auth = None
-AUTH_TYPE = getenv("AUTH_TYPE")
-
-if AUTH_TYPE == "auth":
-    from api.v1.auth.auth import Auth
-    auth = Auth()
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+
+#  importing the auth class based on Auth_TYPE
+
+auth = None
+AUTH_TYPE = os.getenv("AUTH_TYPE")
+
+if AUTH_TYPE == "auth":
+    from api.v1.auth.auth import Auth
+    auth = Auth()
 
 
 @app.errorhandler(401)

@@ -21,18 +21,18 @@ class Auth:
         RETURNS:
             bool: To return True if authentication is required, False if None
         """
-        if path is None:
-            return True
-
-        if not excluded_paths:
-            return True
-
-        if not path.endswith('/'):
-            path += '/'
-
-        if path in excluded_paths:
-            return False
-
+        if path is not None and excluded_paths is not None:
+            for exclusion_path in map(lambda x: x.strip(), excluded_paths):
+                pattern = ''
+                if exclusion_path[-1] == '*':
+                    pattern = '{}.*'.format(exclusion_path[0:-1])
+                elif exclusion_path[-1] == '/':
+                    pattern = '{}/*'.format(exclusion_path[0:-1])
+                else:
+                    pattern = '{}/*'.format(exclusion_path)
+                if re.match(pattern, path):
+                    return False
+        
         return True
 
     def authorization_header(self, request=None) -> str:
@@ -51,7 +51,7 @@ class Auth:
         
         return None
 
-    def current_user(self, request=None) -> Any:
+    def current_user(self, request=None) -> TypeVar('User'):
         """ A Method to retrieve information about the current authenticated
         user from the request or other sources.
 
